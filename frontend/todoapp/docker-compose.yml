@@ -1,0 +1,18 @@
+volumes:
+  todo_data:
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=db
+    volumes:
+      - todo_data:/var/lib/mysql
+  frontend:
+    image: server1:5000/todo-frontend
+    ports:
+      - 10732:80
+  backend:
+    image: server1:5000/todo-backend
+    ports:
+      - 10733:8080
